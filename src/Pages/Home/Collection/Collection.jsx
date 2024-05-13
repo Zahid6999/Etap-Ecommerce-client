@@ -131,7 +131,7 @@ const Collection = () => {
               className="text-[17px] font-semibold leading-[21.6px] tracking-[-0.18px] uppercase"
             >
               <Card className="bg-transparent rounded-none border-none shadow-none">
-                <CardBody></CardBody>
+                {/* <CardBody></CardBody> */}
                 <div className="flex flex-wrap  justify-center items-center gap-4">
                   {item?.collection?.map((collection, i) => (
                     // console.log(collection)

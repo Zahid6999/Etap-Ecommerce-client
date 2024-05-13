@@ -4,7 +4,7 @@ import Heart from "../../Shared/Navber/Button/Heart";
 
 const CollectionCard = ({ collection, i }) => {
   const { title, img, prePrice, price, collection: brand } = collection;
-  console.log(collection);
+
   return (
     <div className="max-w-[381px] p-[22px] bg-white rounded-[10px]">
       <h1 className="text-xl font-bold leading-7 uppercase text-[#111E2C] mb-[10px]">

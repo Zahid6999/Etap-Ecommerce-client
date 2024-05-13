@@ -26,7 +26,7 @@ const Navber = () => {
     },
   ];
   return (
-    <div className="bg-[#2A63E2] rounded-[10px] p-[22px]">
+    <header className="bg-[#2A63E2] rounded-[10px] p-[22px]">
       <div className="flex items-center justify-between">
         {/* Navigation Icon */}
         <div>
@@ -165,7 +165,7 @@ const Navber = () => {
           </section>
         </div>
       </div>
-    </div>
+    </header>
   );
 };
 
