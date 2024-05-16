@@ -9,6 +9,8 @@ const collection = [
     prePrice: "$140.00",
     price: "$120.00",
     img: "https://i.ibb.co/G361fFY/Image.png",
+    rating: "3.5",
+    stock: "1.3k",
   },
   {
     title: "Berrier x argavic que flow trail runnung sgirt",
@@ -16,6 +18,8 @@ const collection = [
     prePrice: "$140.00",
     price: "$120.00",
     img: "https://i.ibb.co/L9ch0d2/Image-9.png",
+    rating: "3.5",
+    stock: "1.3k",
   },
   {
     title: "Berrier x argavic que flow trail runnung sgirt",
@@ -23,6 +27,8 @@ const collection = [
     prePrice: "$140.00",
     price: "$120.00",
     img: "https://i.ibb.co/mT1G4RD/Image-7.png",
+    rating: "3.5",
+    stock: "1.3k",
   },
   {
     title: "Berrier x argavic que flow trail runnung sgirt",
@@ -30,6 +36,8 @@ const collection = [
     prePrice: "$140.00",
     price: "$120.00",
     img: "https://i.ibb.co/pwKRzs0/Image-6.png",
+    rating: "3.5",
+    stock: "1.3k",
   },
 ];
 const SpotLightCollection = () => {
