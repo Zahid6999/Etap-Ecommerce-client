@@ -9,8 +9,9 @@ const Navber = () => {
 
   const navLinks = [
     {
-      labe: "Collections",
-      link: "#",
+      labe: "Products",
+
+      link: "/products",
     },
     {
       labe: "Men",
@@ -158,7 +159,7 @@ const Navber = () => {
             </span>
 
             {navLinks.map((d, i) => (
-              <Link key={i} className="font-bold" href={d.link}>
+              <Link key={i} className="font-bold" to={d.link}>
                 {d.labe}
               </Link>
             ))}

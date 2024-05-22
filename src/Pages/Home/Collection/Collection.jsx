@@ -3,6 +3,7 @@ import { Tabs, Tab, Card, CardBody } from "@nextui-org/react";
 import CollectionCard from "./CollectionCard";
 import Button from "../../Shared/Navber/Button/Button";
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 
 const Collection = () => {
   // let tabs = [
@@ -154,7 +155,9 @@ const Collection = () => {
         <h2 className="text-5xl md:text-6xl text-[#111E2C] font-semibold md:leading-[72px] md:tracking-[0.6px] mb-5">
           Etap Collection
         </h2>
-        <Button text="All Product"></Button>
+        <Link to="/products">
+          <Button text="All Product"></Button>
+        </Link>
       </section>
       <div className="flex w-full flex-col">
         <Tabs

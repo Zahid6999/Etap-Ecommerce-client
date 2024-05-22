@@ -7,6 +7,7 @@
   font-family: "Urbanist", sans-serif;
   line-height: 1.5;
   font-weight: 400;
+  --black: "#111e2c";
 
   color-scheme: light dark;
   color: #111e2c;
@@ -27,7 +28,7 @@ body {
     background-color: #f2f2f2;
   }
   a:hover {
-    color: #747bff;
+    color: #74ffe6e3;
   }
   button {
     background-color: #f9f9f9;
