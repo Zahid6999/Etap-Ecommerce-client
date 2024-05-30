@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link, useLoaderData } from "react-router-dom";
 import { GoChevronRight } from "react-icons/go";
 import heart from "../../../assets/Group 79.png";
@@ -9,12 +9,44 @@ import Range from "./Range";
 import ChooseSize from "./ChooseSize";
 import SelectColor from "./SelectColor";
 import Card from "./Card";
+import PaginationPage from "../Pagination/PaginationPage";
+import Swal from "sweetalert2";
 
 const Product = () => {
   const allProducts = useLoaderData();
+  const [wishlists, setWishlists] = useState("");
+
+  // handle Wishlist
+  const handleWishlist = (product) => {
+    // const newWishList = [...wishlists, product];
+    // setWishlists(newWishList);
+
+    fetch("http://localhost:5000/wishlist", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(product),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.insertedId) {
+          Swal.fire({
+            position: "center",
+            icon: "success",
+            title: "Your Chose Wishlist has been saved",
+            showConfirmButton: false,
+            timer: 1000,
+          });
+          setWishlists(data.insertedId);
+        }
+      });
+  };
+
   return (
     <div>
       <>
+        {/* _------------Product page Banner section----------- */}
         <section className="flex justify-between items-center flex-wrap">
           <p className="text-xl font-semibold leading-6 text-[#111E2C] flex gap-1 active:underline">
             <Link to="/">Home</Link>{" "}
@@ -24,7 +56,7 @@ const Product = () => {
             <Link to="/products">All Products</Link>{" "}
           </p>
           <Link to="/wishlist">
-            <p className=" flex gap-3 items-center text-lg font-semibold leading-5 py-6">
+            <p className=" flex gap-3 items-center text-lg font-semibold leading-5 py-6 ">
               View Wishlist{" "}
               <span>
                 <svg
@@ -92,6 +124,7 @@ const Product = () => {
 
       <section className="grid grid-cols-1 md:grid-cols-4 gap-4">
         {/* Side bar ba Dropdown */}
+
         <div className="bg-white rounded-xl shadow-md pt-[19px] pb-[22px] max-w-[381px] col-span-1 h-fit">
           <aside className="flex items-center justify-between px-[21px] mb-3 cursor-pointer">
             <h1 className="text-2xl font-semibold leading-8 tracking-[0.144px]">
@@ -189,15 +222,24 @@ const Product = () => {
           </div>
         </div>
 
-        {/* Product Area */}
+        {/* ------------------- Product Items Area start -------------------------- */}
+        {/*----------------- Product Area----------------- */}
         <div className="col-span-3">
           <div className="flex flex-wrap justify-center gap-4">
             {allProducts?.map((product) => (
-              <Card key={product._id} product={product}></Card>
+              <Card
+                key={product._id}
+                product={product}
+                handleWishlist={handleWishlist}
+                wishlists={wishlists}
+              ></Card>
             ))}
           </div>
         </div>
       </section>
+
+      {/* Pagination_______________________________ */}
+      <PaginationPage />
     </div>
   );
 };

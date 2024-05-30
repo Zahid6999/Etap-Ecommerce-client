@@ -4,6 +4,7 @@ import Home from "../Pages/Home/Home/Home";
 import Product from "../Pages/PorductPage/Product/Product";
 import ErrorPage from "../components/ErrorPage";
 import SingleProduct from "../Pages/PorductPage/SingleProduct/SingleProduct";
+import WishlistsPage from "../Pages/WishlistsPage/WishlistsPage";
 
 export const router = createBrowserRouter([
   {
@@ -25,6 +26,11 @@ export const router = createBrowserRouter([
         loader: ({ params }) =>
           fetch(`http://localhost:5000/product/${params.id}`),
         element: <SingleProduct />,
+      },
+      {
+        path: "/wishlist",
+        element: <WishlistsPage />,
+        loader: () => fetch("http://localhost:5000/wishlist"),
       },
     ],
   },

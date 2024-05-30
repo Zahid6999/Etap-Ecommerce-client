@@ -4,15 +4,8 @@ import Button from "../../Shared/Navber/Button/Button";
 import Heart from "../../Shared/Navber/Button/Heart";
 import { IoHeart } from "react-icons/io5";
 
-const Card = ({ product }) => {
+const Card = ({ product, handleWishlist, wishlists }) => {
   const { title, collection, _id, img, prePrice, price } = product;
-
-  const [toggle, setToggle] = useState(false);
-
-  // handle Wishlist
-  const handleWishlist = () => {
-    setToggle(!toggle);
-  };
 
   return (
     <div className="max-w-[385px] p-[22px] bg-white rounded-[10px] hover:shadow-2xl duration-700">
@@ -26,7 +19,7 @@ const Card = ({ product }) => {
         <img src={img} alt="" className=" max-h-[331px] mx-auto " />
       </Link>
       <section className="flex items-center gap-4">
-        <p className="text-xl font-bold leading-7 text-[#111E2C] opacity-40">
+        <p className="text-xl font-bold leading-7 text-[#111E2C] opacity-40 line-through">
           {prePrice}
         </p>
         <p className="text-xl font-bold leading-7 text-[#111E2C] ">{price}</p>
@@ -35,9 +28,9 @@ const Card = ({ product }) => {
         <Link to={`${_id}`}>
           <Button text="Buy This Product"></Button>
         </Link>
-        <p onClick={() => handleWishlist()}>
-          {toggle ? (
-            <IoHeart className="text-[64px] text-red-500 border border-[#111E2C] p-[19px]  inline  rounded-[50px]" />
+        <p onClick={() => handleWishlist(product)}>
+          {product._id === wishlists ? (
+            <IoHeart className="text-[26px] text-red-500"></IoHeart>
           ) : (
             <Heart />
           )}

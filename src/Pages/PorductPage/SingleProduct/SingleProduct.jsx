@@ -1,17 +1,69 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { FaAngleRight } from "react-icons/fa6";
 import { GoChevronRight } from "react-icons/go";
 import { TiStarFullOutline } from "react-icons/ti";
 import { Link, useLoaderData } from "react-router-dom";
 import ChooseSize from "../Product/ChooseSize";
 import SelectColor from "../Product/SelectColor";
+import Button from "../../Shared/Navber/Button/Button";
+import { Card, Tab, Tabs } from "@nextui-org/react";
+import shirtImg from "../../../assets/image 29.png";
+import shirtSizw from "../../../assets/Frame 183.png";
+import DisplayCard from "./DisplayCard";
+import ShareCollection from "../../Shared/ShareCollection/ShareCollection";
+
+let tabsCollections = [
+  {
+    id: "Features",
+    label: "Features",
+    collection: [
+      "This plush pullover is preface for gym, errands or kicking around the Ouse. Themidweight fabric makes for a versatile under, over or solo layer. A staple in casual comfort . This is classic style is a must-own",
+      "Adjust drawing hoodie in style outfit",
+      "Rabble crown back layer and in front two colors like orange and black",
+      "Comfortable and premium quality fabrics inside",
+      "Patch pocket on the backside of shirt",
+    ],
+  },
+  {
+    id: "Regular fit",
+    label: "Regular fit",
+    collection: [
+      "This plush pullover is preface for gym, errands or kicking around the Ouse. ",
+      "Adjust drawing hoodie in style outfit",
+      "Rabble crown back layer and in front two colors like orange and black",
+      "Comfortable and premium quality fabrics inside",
+      "Patch pocket on the backside of shirt",
+    ],
+  },
+  {
+    id: "Summary",
+    label: "Summary",
+    collection: [
+      "This plush pullover is preface for gym, errands or kicking around the Ouse. Themidweight fabric makes for a versatile under, over or solo layer. A staple in casual comfort . This is classic style is a must-own",
+      "Adjust drawing hoodie in style outfit",
+      "Rabble crown back layer and in front two colors like orange and black",
+      "Comfortable and premium quality fabrics inside",
+    ],
+  },
+];
 
 const SingleProduct = () => {
   const loadedProduct = useLoaderData();
   const [product, setProduct] = useState(loadedProduct);
+  const [allProducts, setAllProduct] = useState([]);
+
   const { collection, img, _id, title, prePrice, price, rating, stock } =
     product;
-  console.log(product);
+
+  useEffect(() => {
+    async function loaded() {
+      const resProducts = await fetch("http://localhost:5000/products");
+      const data = await resProducts.json();
+      setAllProduct(data);
+    }
+    loaded();
+  }, []);
+
   return (
     <div>
       <nav className="flex justify-between items-center flex-wrap my-4">
@@ -119,7 +171,7 @@ const SingleProduct = () => {
           />
         </svg>
       </p>
-      <section className="flex flex-wrap gap-5">
+      <section className="flex flex-wrap gap-5 justify-center">
         <figure className=" bg-white max-w-[781px] rounded-xl p-5 w-full ">
           <img src={img} alt="Product Image" />
           <h2 className="text-3xl font-semibold">{collection}</h2>
@@ -172,7 +224,7 @@ const SingleProduct = () => {
               />
             </svg>
           </p>
-          <article className="flex justify-between py-6">
+          <article className="md:flex md:justify-between py-6 max-w-[780px]">
             <div>
               <h4 className="text-2xl font-semibold leading-8 tracking-[0.144px] flex gap-x-5">
                 Choose Size :{" "}
@@ -235,9 +287,98 @@ const SingleProduct = () => {
               </span>{" "}
               <span>{price}</span>
             </p>
+
+            <div className="flex flex-wrap gap-5 mt-6">
+              <button className="text-lg font-semibold leading-[21.6px] text-white bg-[#111E2C] py-5 px-[49px] flex items-center gap-[10px] rounded-[50px]">
+                <span>Buy This Product</span>{" "}
+                <span>
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="20"
+                    height="20"
+                    viewBox="0 0 20 20"
+                    fill="none"
+                  >
+                    <path
+                      d="M12.99 7L18 12.02H1"
+                      stroke="white"
+                      strokeWidth="1.5"
+                      strokeMiterlimit="10"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    />
+                  </svg>
+                </span>
+              </button>
+              <Button text="Add To Cart"></Button>
+            </div>
           </fieldset>
         </div>
       </section>
+
+      <address className="flex flex-wrap justify-center gap-4 ">
+        <section className="max-w-[780px] bg-white rounded-xl p-[22px] mt-6">
+          <h className="text-5xl font-semibold leading-[55.2px] tracking-[-0.46px]">
+            Product Summary
+          </h>
+          <div className="">
+            <Tabs
+              aria-label="Dynamic tabs"
+              items={tabsCollections}
+              variant="underlined"
+            >
+              {(item) => (
+                <Tab
+                  key={item.id}
+                  title={item.label}
+                  className="text-[17px] font-semibold leading-[21.6px] tracking-[-0.18px] capitalize"
+                >
+                  <Card className="bg-transparent rounded-none border-none shadow-none">
+                    {/* <CardBody></CardBody> */}
+                    <div className="">
+                      {item?.collection?.map((collection, i) => (
+                        // console.log(collection)
+                        <li
+                          key={i}
+                          className="text-lg font-normal lowercase mb-6"
+                        >
+                          {collection}
+                        </li>
+                      ))}
+                    </div>
+                  </Card>
+                </Tab>
+              )}
+            </Tabs>
+          </div>
+        </section>
+
+        <section className="max-w-[780px] bg-white rounded-xl p-[22px] mt-6">
+          <h className="text-5xl font-semibold leading-[55.2px] tracking-[-0.46px]">
+            Size Chart
+          </h>
+          <figure className=" mt-6 flex flex-wrap gap-8 items-center">
+            <img src={shirtImg} alt="shirt Img" />
+            <img src={shirtSizw} alt="Shirt" />
+          </figure>
+        </section>
+      </address>
+
+      <section className="mt-5 mb-[55px] ">
+        <h1 className="text-6xl font-semibold leading-[72px] tracking-[-0.6px] text-center 2xl:text-left">
+          Similar Outfits
+        </h1>
+        <div className="flex flex-wrap justify-center gap-4 mt-4">
+          {allProducts
+            ?.reverse()
+            ?.slice(0, 4)
+            ?.map((product) => (
+              <DisplayCard key={product._id} product={product}></DisplayCard>
+            ))}
+        </div>
+      </section>
+
+      <ShareCollection />
     </div>
   );
 };

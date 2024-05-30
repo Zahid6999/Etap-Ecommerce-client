@@ -1,4 +1,4 @@
-import { Tabs, Tab, Card, CardBody } from "@nextui-org/react";
+import { Tabs, Tab, Card } from "@nextui-org/react";
 
 import CollectionCard from "./CollectionCard";
 import Button from "../../Shared/Navber/Button/Button";
@@ -144,9 +144,15 @@ const Collection = () => {
   const [tabsCollections, setTabsCollection] = useState([]);
 
   useEffect(() => {
-    fetch("http://localhost:5000/etap-collection")
-      .then((res) => res.json())
-      .then((data) => setTabsCollection(data));
+    async function Load() {
+      const resCollection = await fetch(
+        "http://localhost:5000/etap-collection"
+      );
+      const data = await resCollection.json();
+      setTabsCollection(data);
+    }
+
+    Load();
   }, []);
 
   return (

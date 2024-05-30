@@ -22,7 +22,7 @@ const CollectionCard = ({ collection, i }) => {
       </h2>
       <img src={img} alt="" className=" max-h-[331px] mx-auto " />
       <section className="flex items-center gap-4">
-        <p className="text-xl font-bold leading-7 text-[#111E2C] opacity-40">
+        <p className="text-xl font-bold leading-7 text-[#111E2C] opacity-40 line-through">
           {prePrice}
         </p>
         <p className="text-xl font-bold leading-7 text-[#111E2C] ">{price}</p>

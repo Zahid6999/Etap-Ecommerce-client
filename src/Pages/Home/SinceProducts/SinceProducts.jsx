@@ -1,6 +1,7 @@
 import React from "react";
 import Img1 from "../../../assets/CollectionImg/collection (1).png";
 import Img2 from "../../../assets/CollectionImg/collection.png";
+import { Link } from "react-router-dom";
 
 const SinceProducts = () => {
   return (
@@ -21,27 +22,29 @@ const SinceProducts = () => {
             window into the diverse and creative fashion choices made by
             everyday people around the world.
           </p>
-          <button className="text-lg font-semibold leading-[21.6px] border border-white py-5 bg-inherit text-white px-[49px] flex items-center gap-[10px] rounded-[50px]">
-            <span>All Product</span>{" "}
-            <span>
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="20"
-                height="20"
-                viewBox="0 0 20 20"
-                fill="none"
-              >
-                <path
-                  d="M12.99 7L18 12.02H1"
-                  stroke="white"
-                  strokeWidth="1.5"
-                  strokeMiterlimit="10"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-              </svg>
-            </span>
-          </button>
+          <Link to="/products">
+            <button className="text-lg font-semibold leading-[21.6px] border border-white py-5 bg-inherit text-white px-[49px] flex items-center gap-[10px] rounded-[50px]">
+              <span>All Product</span>{" "}
+              <span>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="20"
+                  height="20"
+                  viewBox="0 0 20 20"
+                  fill="none"
+                >
+                  <path
+                    d="M12.99 7L18 12.02H1"
+                    stroke="white"
+                    strokeWidth="1.5"
+                    strokeMiterlimit="10"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                </svg>
+              </span>
+            </button>
+          </Link>
         </section>
       </figure>
     </div>

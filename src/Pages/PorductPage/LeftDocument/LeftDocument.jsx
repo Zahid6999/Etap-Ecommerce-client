@@ -55,9 +55,8 @@ const LeftDocument = () => {
   return (
     <div className=" px-[13px]">
       {leftDocItems?.map((doc, i) => (
-        <>
+        <div key={i}>
           <li
-            key={i}
             className={`list-none flex items-center justify-between duration-500 cursor-pointer mb-5 text-lg font-medium leading-[21.6px] capitalize  hover:bg-slate-100 py-2 px-2 rounded-lg`}
             onClick={() => setOpen(!open)}
           >
@@ -78,7 +77,7 @@ const LeftDocument = () => {
               {sub.subTitle}
             </p>
           ))}
-        </>
+        </div>
       ))}
     </div>
   );
