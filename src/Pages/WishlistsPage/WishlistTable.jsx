@@ -10,23 +10,23 @@ import {
 } from "@nextui-org/react";
 import { RxCross2 } from "react-icons/rx";
 
-export default function WishlistTable({ wishlist }) {
+export default function WishlistTable({ wishlist, handleDeleteWishlist }) {
   return (
     <Table aria-label="Example empty table" shadow="none">
       <TableHeader>
-        <TableColumn className="text-xl font-semibold text-[#111E2C] leading-7 tracking-[-0.12px]">
+        <TableColumn className="md:text-xl font-semibold text-[#111E2C] md:leading-7 md:tracking-[-0.12px]">
           Product
         </TableColumn>
-        <TableColumn className="text-xl font-semibold text-[#111E2C] leading-7 tracking-[-0.12px]">
+        <TableColumn className="md:text-xl font-semibold text-[#111E2C] md:leading-7 md:tracking-[-0.12px]">
           Price
         </TableColumn>
-        <TableColumn className="text-xl font-semibold text-[#111E2C] leading-7 tracking-[-0.12px]">
+        <TableColumn className="md:text-xl font-semibold text-[#111E2C] md:leading-7 md:tracking-[-0.12px]">
           Cart
         </TableColumn>
-        <TableColumn className="text-xl font-semibold text-[#111E2C] leading-7 tracking-[-0.12px]">
+        <TableColumn className="md:text-xl font-semibold text-[#111E2C] md:leading-7 md:tracking-[-0.12px]">
           Product Status
         </TableColumn>
-        <TableColumn className="text-xl font-semibold text-[#111E2C] leading-7 tracking-[-0.12px]">
+        <TableColumn className="md:text-xl font-semibold text-[#111E2C] md:leading-7 md:tracking-[-0.12px]">
           Remove
         </TableColumn>
       </TableHeader>
@@ -56,7 +56,7 @@ export default function WishlistTable({ wishlist }) {
               ${wishLi.price}
             </TableCell>
             <TableCell>
-              <button className="md:text-base font-semibold md:leading-5 flex gap-3 items-center md:py-[14px] md:px-[30px] bg-inherit hover:shadow-xl duration-300 border-[#111E2C] border rounded-full">
+              <button className="md:text-base font-semibold md:leading-5 flex md:gap-3 items-center py-2  md:py-[14px] px-4 md:px-[30px] bg-inherit hover:shadow-xl duration-300 border-[#111E2C] border rounded-full">
                 <span>Add to cart</span>
                 <span>
                   <svg
@@ -90,7 +90,10 @@ export default function WishlistTable({ wishlist }) {
               {wishLi.stock.length > 1 ? "(In Stock)" : "(out of stock)"}
             </TableCell>
             <TableCell>
-              <button className="border p-4 bg-transparent rounded-full hover:bg-red-600 hover:border-none hover:shadow-2xl hover:text-white duration-400 border-[#111E2C]">
+              <button
+                onClick={() => handleDeleteWishlist(wishLi._id)}
+                className="border p-4 bg-transparent rounded-full hover:bg-red-600 hover:border-none hover:shadow-2xl hover:text-white duration-400 border-[#111E2C]"
+              >
                 <RxCross2 className="text-lg"></RxCross2>
               </button>
             </TableCell>

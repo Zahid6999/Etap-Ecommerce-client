@@ -4,7 +4,7 @@ import Button from "../../Shared/Navber/Button/Button";
 import Heart from "../../Shared/Navber/Button/Heart";
 import { IoHeart } from "react-icons/io5";
 
-const Card = ({ product, handleWishlist, wishlists }) => {
+const Card = ({ product, handleWishlist, handleAddToCart, wishlists }) => {
   const { title, collection, _id, img, prePrice, price } = product;
 
   return (
@@ -25,9 +25,10 @@ const Card = ({ product, handleWishlist, wishlists }) => {
         <p className="text-xl font-bold leading-7 text-[#111E2C] ">{price}</p>
       </section>
       <div className="mt-[22px] flex gap-3 items-center">
-        <Link to={`${_id}`}>
+        <div onClick={() => handleAddToCart(product)}>
           <Button text="Buy This Product"></Button>
-        </Link>
+        </div>
+
         <p onClick={() => handleWishlist(product)}>
           {product._id === wishlists ? (
             <IoHeart className="text-[26px] text-red-500"></IoHeart>

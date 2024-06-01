@@ -18,9 +18,6 @@ const Product = () => {
 
   // handle Wishlist
   const handleWishlist = (product) => {
-    // const newWishList = [...wishlists, product];
-    // setWishlists(newWishList);
-
     fetch("http://localhost:5000/wishlist", {
       method: "POST",
       headers: {
@@ -30,7 +27,7 @@ const Product = () => {
     })
       .then((res) => res.json())
       .then((data) => {
-        if (data.insertedId) {
+        if (data.insertedId !== product._id) {
           Swal.fire({
             position: "center",
             icon: "success",
@@ -39,10 +36,35 @@ const Product = () => {
             timer: 1000,
           });
           setWishlists(data.insertedId);
+        } else {
+          return;
         }
       });
   };
 
+  // handleAddToCart -----------------
+  const handleAddToCart = (product) => {
+    fetch(`http://localhost:5000/add-to-cart`, {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(product),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.acknowledged) {
+          Swal.fire({
+            position: "center-start",
+            icon: "success",
+            toast: true,
+            title: "Your Product added",
+            showConfirmButton: false,
+            timer: 1500,
+          });
+        }
+      });
+  };
   return (
     <div>
       <>
@@ -231,6 +253,7 @@ const Product = () => {
                 key={product._id}
                 product={product}
                 handleWishlist={handleWishlist}
+                handleAddToCart={handleAddToCart}
                 wishlists={wishlists}
               ></Card>
             ))}

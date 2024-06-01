@@ -109,13 +109,15 @@ const Navber = () => {
               />
             </svg>
           </span>
-          <span>
-            <img
-              src={addToCartIcon}
-              alt="Cart Icon"
-              className="border rounded-full p-[14px] border-white cursor-pointer hover:bg-stone-300 duration-150"
-            />
-          </span>
+          <Link to="/add-to-cart">
+            <span>
+              <img
+                src={addToCartIcon}
+                alt="Cart Icon"
+                className="border rounded-full p-[14px] border-white cursor-pointer hover:bg-stone-300 duration-150"
+              />
+            </span>
+          </Link>
           <span className="hidden md:block">
             <Input
               type="text"

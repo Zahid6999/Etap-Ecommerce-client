@@ -22,6 +22,12 @@
 body {
 }
 
+th,
+td {
+  border-bottom: 1px dashed #a29b9b;
+  padding: 20px 0;
+}
+
 @media (prefers-color-scheme: light) {
   :root {
     color: #111e2c;

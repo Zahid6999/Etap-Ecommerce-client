@@ -5,6 +5,7 @@ import Product from "../Pages/PorductPage/Product/Product";
 import ErrorPage from "../components/ErrorPage";
 import SingleProduct from "../Pages/PorductPage/SingleProduct/SingleProduct";
 import WishlistsPage from "../Pages/WishlistsPage/WishlistsPage";
+import AddToCart from "../Pages/AddToCart/AddToCart";
 
 export const router = createBrowserRouter([
   {
@@ -31,6 +32,11 @@ export const router = createBrowserRouter([
         path: "/wishlist",
         element: <WishlistsPage />,
         loader: () => fetch("http://localhost:5000/wishlist"),
+      },
+      {
+        path: "/add-to-cart",
+        element: <AddToCart />,
+        loader: () => fetch("http://localhost:5000/add-to-cart"),
       },
     ],
   },
